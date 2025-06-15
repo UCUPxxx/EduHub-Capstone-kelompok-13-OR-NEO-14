@@ -1,0 +1,657 @@
+/* ===================================
+   RESPONSIVE DESIGN - EduHub Platform
+   ===================================*/
+
+/* Tablet Landscape (1024px and below) */
+@media (max-width: 1024px) {
+    .container {
+        padding: 0 15px;
+    }
+    
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero p {
+        font-size: 1.1rem;
+    }
+    
+    .features {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+    
+    .course-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Tablet Portrait (768px and below) */
+@media (max-width: 768px) {
+    /* Navigation */
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: white;
+        flex-direction: column;
+        padding: 1rem;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 0 0 15px 15px;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links li {
+        margin: 0.5rem 0;
+    }
+
+    .nav-links a {
+        padding: 0.5rem 0;
+        display: block;
+        text-align: center;
+        border-bottom: 1px solid #eee;
+    }
+
+    .nav-links a:last-child {
+        border-bottom: none;
+    }
+
+    .mobile-menu {
+        display: block;
+        color: #667eea;
+        font-size: 1.5rem;
+        transition: transform 0.3s ease;
+    }
+
+    .mobile-menu:hover {
+        transform: scale(1.1);
+    }
+
+    /* Hero Section */
+    .hero {
+        padding: 2rem 0;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .cta-button {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    /* Features */
+    .features {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        margin: 2rem 0;
+    }
+
+    .feature-card {
+        padding: 1.5rem;
+    }
+
+    .feature-icon {
+        font-size: 2.5rem;
+    }
+
+    /* Course Grid */
+    .course-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .course-image {
+        height: 150px;
+        font-size: 2.5rem;
+    }
+
+    .course-content {
+        padding: 1rem;
+    }
+
+    .course-title {
+        font-size: 1.1rem;
+    }
+
+    /* Stats Grid */
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    .stat-card {
+        padding: 1rem;
+    }
+
+    .stat-number {
+        font-size: 2rem;
+    }
+
+    /* Progress Bar */
+    .progress-bar {
+        width: 100px;
+    }
+
+    .progress-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .progress-item .progress-bar {
+        width: 100%;
+        order: 3;
+    }
+
+    /* Content Sections */
+    .content-section {
+        padding: 1.5rem;
+        margin: 1rem 0;
+    }
+
+    .content-section h2 {
+        font-size: 1.5rem;
+    }
+
+    /* Quiz Container */
+    .quiz-container {
+        padding: 1.5rem;
+    }
+
+    .quiz-option {
+        padding: 0.8rem;
+        font-size: 0.9rem;
+    }
+
+    .quiz-button {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    /* Progress Container */
+    .progress-container {
+        padding: 1.5rem;
+    }
+
+    /* Contact Form */
+    .content-section div[style*="grid-template-columns"] {
+        display: block !important;
+    }
+
+    .content-section div[style*="grid-template-columns"] > div {
+        margin-bottom: 2rem;
+    }
+
+    /* Form Elements */
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        padding: 0.8rem;
+        font-size: 0.9rem;
+    }
+
+    .btn-primary {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+        width: 100%;
+    }
+
+    /* Notification */
+    .notification {
+        right: 10px;
+        left: 10px;
+        padding: 0.8rem 1rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* Mobile Landscape (640px and below) */
+@media (max-width: 640px) {
+    .container {
+        padding: 0 10px;
+    }
+
+    .hero {
+        padding: 1.5rem 0;
+    }
+
+    .hero h1 {
+        font-size: 1.8rem;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .stat-card {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        text-align: left;
+    }
+
+    .stat-number {
+        font-size: 1.8rem;
+    }
+
+    .feature-card {
+        padding: 1rem;
+        text-align: left;
+    }
+
+    .feature-icon {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .course-card {
+        margin-bottom: 1rem;
+    }
+
+    .course-image {
+        height: 120px;
+        font-size: 2rem;
+    }
+
+    .quiz-container {
+        padding: 1rem;
+    }
+
+    .progress-container {
+        padding: 1rem;
+    }
+
+    .content-section {
+        padding: 1rem;
+    }
+}
+
+/* Mobile Portrait (480px and below) */
+@media (max-width: 480px) {
+    /* Navigation */
+    nav {
+        padding: 0.5rem 0;
+    }
+
+    .logo {
+        font-size: 1.5rem;
+    }
+
+    .mobile-menu {
+        font-size: 1.3rem;
+    }
+
+    /* Hero Section */
+    .hero h1 {
+        font-size: 1.6rem;
+        line-height: 1.2;
+    }
+
+    .hero p {
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+    }
+
+    .cta-button {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.8rem;
+    }
+
+    /* Feature Cards */
+    .feature-card {
+        padding: 0.8rem;
+    }
+
+    .feature-card h3 {
+        font-size: 1.1rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .feature-card p {
+        font-size: 0.9rem;
+        line-height: 1.4;
+    }
+
+    /* Course Cards */
+    .course-image {
+        height: 100px;
+        font-size: 1.8rem;
+    }
+
+    .course-content {
+        padding: 0.8rem;
+    }
+
+    .course-title {
+        font-size: 1rem;
+    }
+
+    .course-description {
+        font-size: 0.9rem;
+        line-height: 1.4;
+    }
+
+    .course-meta {
+        font-size: 0.8rem;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    /* Stats Cards */
+    .stat-card {
+        padding: 0.8rem;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .stat-number {
+        font-size: 1.5rem;
+        margin-bottom: 0.2rem;
+    }
+
+    .stat-label {
+        font-size: 0.8rem;
+    }
+
+    /* Form Elements */
+    .form-group {
+        margin-bottom: 1rem;
+    }
+
+    .form-group label {
+        font-size: 0.9rem;
+        margin-bottom: 0.3rem;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        padding: 0.7rem;
+        font-size: 0.8rem;
+    }
+
+    /* Quiz Elements */
+    .quiz-question h3 {
+        font-size: 1.1rem;
+        line-height: 1.3;
+        margin-bottom: 1rem;
+    }
+
+    .quiz-option {
+        padding: 0.7rem;
+        font-size: 0.8rem;
+        margin-bottom: 0.3rem;
+    }
+
+    .quiz-button {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.8rem;
+        margin-top: 0.8rem;
+    }
+
+    /* Progress Items */
+    .progress-item {
+        padding: 0.8rem 0;
+    }
+
+    .progress-item strong {
+        font-size: 0.9rem;
+    }
+
+    .progress-item div[style*="color: #666"] {
+        font-size: 0.8rem;
+    }
+
+    /* Content Sections */
+    .content-section h2 {
+        font-size: 1.3rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .content-section p {
+        font-size: 0.9rem;
+        line-height: 1.4;
+    }
+
+    /* Footer */
+    footer {
+        padding: 1.5rem 0;
+    }
+
+    footer p {
+        font-size: 0.9rem;
+        line-height: 1.4;
+    }
+
+    /* Notification */
+    .notification {
+        top: 70px;
+        right: 5px;
+        left: 5px;
+        padding: 0.7rem 0.8rem;
+        font-size: 0.8rem;
+        border-radius: 8px;
+    }
+}
+
+/* Extra Small Devices (360px and below) */
+@media (max-width: 360px) {
+    .container {
+        padding: 0 8px;
+    }
+
+    .hero h1 {
+        font-size: 1.4rem;
+    }
+
+    .hero p {
+        font-size: 0.8rem;
+    }
+
+    .cta-button {
+        padding: 0.6rem 1rem;
+        font-size: 0.7rem;
+    }
+
+    .feature-card,
+    .course-card,
+    .quiz-container,
+    .progress-container,
+    .content-section {
+        padding: 0.6rem;
+    }
+
+    .stat-number {
+        font-size: 1.3rem;
+    }
+
+    .course-image {
+        height: 80px;
+        font-size: 1.5rem;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        padding: 0.6rem;
+        font-size: 0.7rem;
+    }
+
+    .quiz-option {
+        padding: 0.6rem;
+        font-size: 0.7rem;
+    }
+
+    .quiz-button,
+    .btn-primary {
+        padding: 0.6rem 1rem;
+        font-size: 0.7rem;
+    }
+}
+
+/* High DPI Displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .feature-icon,
+    .course-image i {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+}
+
+/* Landscape Orientation */
+@media (orientation: landscape) and (max-height: 500px) {
+    .hero {
+        padding: 1rem 0;
+    }
+
+    .hero h1 {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .hero p {
+        font-size: 0.9rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .features {
+        margin: 1rem 0;
+    }
+
+    .feature-card {
+        padding: 1rem;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .mobile-menu,
+    .nav-links,
+    .cta-button,
+    .quiz-button,
+    .btn-primary,
+    .notification {
+        display: none !important;
+    }
+
+    .hero {
+        color: black !important;
+        background: white !important;
+    }
+
+    .content-section,
+    .feature-card,
+    .course-card {
+        box-shadow: none !important;
+        border: 1px solid #ddd !important;
+    }
+
+    .page {
+        display: block !important;
+    }
+}
+
+/* Accessibility Improvements */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    .nav-links {
+        background: #2d3748 !important;
+        color: white !important;
+    }
+
+    .nav-links a {
+        color: white !important;
+    }
+
+    .content-section,
+    .feature-card,
+    .course-card,
+    .quiz-container,
+    .progress-container {
+        background: rgba(45, 55, 72, 0.9) !important;
+        color: white !important;
+    }
+
+    .quiz-option {
+        background: #4a5568 !important;
+        border-color: #2d3748 !important;
+        color: white !important;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        background: #4a5568 !important;
+        border-color: #2d3748 !important;
+        color: white !important;
+    }
+}
+
+/* Focus Styles for Better Accessibility */
+@media (max-width: 768px) {
+    .nav-links a:focus,
+    .quiz-option:focus,
+    .quiz-button:focus,
+    .btn-primary:focus,
+    .cta-button:focus {
+        outline: 2px solid #667eea;
+        outline-offset: 2px;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+        outline: 2px solid #667eea;
+        outline-offset: 2px;
+    }
+}
+
+/* Touch Device Optimizations */
+@media (pointer: coarse) {
+    .quiz-option,
+    .course-card,
+    .feature-card {
+        min-height: 44px;
+        cursor: pointer;
+    }
+
+    .quiz-button,
+    .btn-primary,
+    .cta-button {
+        min-height: 44px;
+        min-width: 44px;
+    }
+
+    .mobile-menu {
+        min-height: 44px;
+        min-width: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}

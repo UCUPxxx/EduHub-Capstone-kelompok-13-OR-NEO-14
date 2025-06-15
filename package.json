@@ -1,0 +1,153 @@
+{
+  "name": "eduhub-platform",
+  "version": "1.0.0",
+  "description": "Platform Edukasi Interaktif - EduHub menyediakan pengalaman belajar online yang interaktif dan menyenangkan untuk semua tingkat pendidikan",
+  "main": "index.html",
+  "scripts": {
+    "start": "live-server --port=3000 --open=/index.html",
+    "dev": "live-server --port=3000 --watch=. --open=/index.html",
+    "build": "npm run minify-css && npm run minify-js",
+    "minify-css": "cleancss -o dist/styles.min.css src/styles.css",
+    "minify-js": "uglifyjs src/script.js -o dist/script.min.js",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "lint": "eslint src/**/*.js",
+    "lint:fix": "eslint src/**/*.js --fix",
+    "format": "prettier --write \"src/**/*.{js,css,html}\"",
+    "validate": "html-validate src/*.html",
+    "deploy": "gh-pages -d .",
+    "serve": "http-server -p 8080 -c-1",
+    "lighthouse": "lighthouse http://localhost:3000 --output html --output-path ./reports/lighthouse.html"
+  },
+  "keywords": [
+    "education",
+    "learning",
+    "platform",
+    "interactive",
+    "courses",
+    "quiz",
+    "progress-tracking",
+    "edtech",
+    "indonesia",
+    "online-learning"
+  ],
+  "author": {
+    "name": "EduHub Team",
+    "email": "info@eduhub.com",
+    "url": "https://eduhub.com"
+  },
+  "license": "MIT",
+  "homepage": "https://eduhub.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eduhub/platform.git"
+  },
+  "bugs": {
+    "url": "https://github.com/eduhub/platform/issues",
+    "email": "support@eduhub.com"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead",
+    "not ie <= 11"
+  ],
+  "devDependencies": {
+    "@babel/core": "^7.23.0",
+    "@babel/preset-env": "^7.23.0",
+    "clean-css-cli": "^5.6.2",
+    "eslint": "^8.50.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.28.1",
+    "gh-pages": "^6.0.0",
+    "html-validate": "^8.5.0",
+    "http-server": "^14.1.1",
+    "jest": "^29.7.0",
+    "lighthouse": "^11.2.0",
+    "live-server": "^1.2.2",
+    "prettier": "^3.0.3",
+    "uglify-js": "^3.17.4"
+  },
+  "dependencies": {
+    "chart.js": "^4.4.0",
+    "axios": "^1.5.0"
+  },
+  "optionalDependencies": {
+    "pwa-builder": "^0.15.0"
+  },
+  "config": {
+    "port": 3000,
+    "host": "localhost"
+  },
+  "jest": {
+    "testEnvironment": "jsdom",
+    "setupFilesAfterEnv": ["<rootDir>/tests/setup.js"],
+    "testMatch": [
+      "<rootDir>/tests/**/*.test.js"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "!src/vendor/**"
+    ]
+  },
+  "eslintConfig": {
+    "extends": ["airbnb-base"],
+    "env": {
+      "browser": true,
+      "es2021": true,
+      "jest": true
+    },
+    "rules": {
+      "no-console": "warn",
+      "no-unused-vars": "error",
+      "prefer-const": "error"
+    }
+  },
+  "prettier": {
+    "semi": true,
+    "trailingComma": "es5",
+    "singleQuote": true,
+    "printWidth": 80,
+    "tabWidth": 2
+  },
+  "pwa": {
+    "name": "EduHub Platform",
+    "short_name": "EduHub",
+    "description": "Platform Edukasi Interaktif",
+    "theme_color": "#667eea",
+    "background_color": "#ffffff",
+    "display": "standalone",
+    "orientation": "portrait",
+    "scope": "/",
+    "start_url": "/"
+  },
+  "funding": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/eduhub"
+  },
+  "contributors": [
+    {
+      "name": "Frontend Developer",
+      "email": "frontend@eduhub.com",
+      "role": "developer"
+    },
+    {
+      "name": "UI/UX Designer",
+      "email": "design@eduhub.com",
+      "role": "designer"
+    },
+    {
+      "name": "Backend Developer",
+      "email": "backend@eduhub.com",
+      "role": "developer"
+    }
+  ],
+  "private": false,
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  }
+}

@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="EduHub - Platform pembelajaran online interaktif untuk semua tingkat pendidikan">
+    <meta name="keywords" content="edukasi, pembelajaran online, kursus, quiz, progress tracking">
+    <meta name="author" content="EduHub Team">
+    <title>EduHub - Platform Edukasi Interaktif</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
+    
+    <!-- External CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Internal CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header id="header">
+        <nav class="container">
+            <a href="#" class="logo">
+                <i class="fas fa-graduation-cap"></i>
+                EduHub
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#" class="nav-link active" data-page="home">Beranda</a></li>
+                <li><a href="#" class="nav-link" data-page="courses">Kursus</a></li>
+                <li><a href="#" class="nav-link" data-page="quiz">Quiz</a></li>
+                <li><a href="#" class="nav-link" data-page="progress">Progress</a></li>
+                <li><a href="#" class="nav-link" data-page="contact">Kontak</a></li>
+            </ul>
+            <button class="mobile-menu" id="mobileMenu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main">
+        <!-- Halaman 1: Beranda -->
+        <section class="page active" id="home">
+            <!-- Hero Section -->
+            <div class="hero">
+                <div class="container">
+                    <div class="hero-content">
+                        <h1>Selamat Datang di EduHub</h1>
+                        <p>Platform pembelajaran online yang memberikan pengalaman belajar interaktif dan menyenangkan untuk semua tingkat pendidikan.</p>
+                        <div class="hero-buttons">
+                            <button class="cta-button primary" onclick="navigateToPage('courses')">
+                                <i class="fas fa-play"></i>
+                                Mulai Belajar
+                            </button>
+                            <button class="cta-button secondary" onclick="navigateToPage('quiz')">
+                                <i class="fas fa-brain"></i>
+                                Coba Quiz
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Statistics Section -->
+            <div class="container">
+                <div class="stats-section">
+                    <h2>Statistik Platform</h2>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <span class="stat-number" id="totalStudents">0</span>
+                            <span class="stat-label">Total Siswa</span>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-book"></i>
+                            </div>
+                            <span class="stat-number" id="totalCourses">0</span>
+                            <span class="stat-label">Kursus Tersedia</span>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-trophy"></i>
+                            </div>
+                            <span class="stat-number" id="totalQuizzes">0</span>
+                            <span class="stat-label">Quiz Selesai</span>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <span class="stat-number" id="successRate">0%</span>
+                            <span class="stat-label">Tingkat Keberhasilan</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Features Section -->
+                <div class="features-section">
+                    <h2>Fitur Unggulan</h2>
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-book-open"></i>
+                            </div>
+                            <h3>Materi Pembelajaran</h3>
+                            <p>Akses ribuan materi pembelajaran berkualitas tinggi dari berbagai bidang ilmu pengetahuan dengan metode interaktif.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <h3>Quiz Interaktif</h3>
+                            <p>Uji pemahaman Anda dengan quiz interaktif yang menantang dan mendidik dengan sistem scoring real-time.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h3>Tracking Progress</h3>
+                            <p>Pantau perkembangan belajar Anda dengan sistem tracking yang komprehensif dan analitik mendalam.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Halaman 2: Kursus -->
+        <section class="page" id="courses">
+            <div class="container">
+                <div class="page-header">
+                    <h1>Kursus Tersedia</h1>
+                    <p>Pilih kursus yang sesuai dengan minat dan kebutuhan belajar Anda</p>
+                </div>
+
+                <!-- Course Filter -->
+                <div class="course-filters">
+                    <div class="filter-group">
+                        <label for="courseFilter">Filter Kategori:</label>
+                        <select id="courseFilter" onchange="filterCourses()">
+                            <option value="">Semua Kategori</option>
+                            <option value="programming">Programming</option>
+                            <option value="design">Design</option>
+                            <option value="business">Business</option>
+                            <option value="science">Science</option>
+                        </select>
+                    </div>
+                    <div class="search-group">
+                        <input type="text" id="courseSearch" placeholder="Cari kursus..." onkeyup="searchCourses()">
+                        <i class="fas fa-search"></i>
+                    </div>
+                </div>
+
+                <!-- Course Grid -->
+                <div class="course-grid" id="courseGrid">
+                    <div class="loading-skeleton">
+                        <div class="skeleton-card"></div>
+                        <div class="skeleton-card"></div>
+                        <div class="skeleton-card"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Halaman 3: Quiz -->
+        <section class="page" id="quiz">
+            <div class="container">
+                <div class="page-header">
+                    <h1>Quiz Interaktif</h1>
+                    <p>Uji kemampuan Anda dengan quiz yang telah disiapkan</p>
+                </div>
+
+                <div class="quiz-container">
+                    <!-- Quiz Selection -->
+                    <div id="quizSelection" class="quiz-selection">
+                        <h3>Pilih Kategori Quiz</h3>
+                        <div class="quiz-categories">
+                            <div class="quiz-category-card" onclick="selectQuizCategory('programming')">
+                                <i class="fas fa-code"></i>
+                                <h4>Programming</h4>
+                                <p>JavaScript, HTML, CSS</p>
+                            </div>
+                            <div class="quiz-category-card" onclick="selectQuizCategory('design')">
+                                <i class="fas fa-palette"></i>
+                                <h4>Design</h4>
+                                <p>UI/UX, Graphic Design</p>
+                            </div>
+                            <div class="quiz-category-card" onclick="selectQuizCategory('general')">
+                                <i class="fas fa-lightbulb"></i>
+                                <h4>Pengetahuan Umum</h4>
+                                <p>Teknologi, Bisnis</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quiz Questions -->
+                    <div id="quizQuestions" class="quiz-questions" style="display: none;">
+                        <div class="quiz-header">
+                            <div class="quiz-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="quizProgress"></div>
+                                </div>
+                                <span id="questionCounter">1 / 5</span>
+                            </div>
+                            <div class="quiz-timer">
+                                <i class="fas fa-clock"></i>
+                                <span id="timer">30</span>
+                            </div>
+                        </div>
+
+                        <div class="question-container">
+                            <h3 id="questionText">Pertanyaan akan muncul di sini</h3>
+                            <div class="quiz-options" id="quizOptions">
+                                <!-- Options will be loaded here -->
+                            </div>
+                        </div>
+
+                        <div class="quiz-controls">
+                            <button class="btn-secondary" onclick="previousQuestion()" id="prevBtn" disabled>
+                                <i class="fas fa-arrow-left"></i> Sebelumnya
+                            </button>
+                            <button class="btn-primary" onclick="nextQuestion()" id="nextBtn" disabled>
+                                Selanjutnya <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Quiz Results -->
+                    <div id="quizResults" class="quiz-results" style="display: none;">
+                        <div class="results-header">
+                            <h2>Hasil Quiz</h2>
+                            <div class="score-circle">
+                                <div class="score-number" id="finalScore">0</div>
+                                <div class="score-total">/ 100</div>
+                            </div>
+                        </div>
+                        
+                        <div class="results-details">
+                            <div class="result-item">
+                                <span>Jawaban Benar:</span>
+                                <span id="correctAnswers">0</span>
+                            </div>
+                            <div class="result-item">
+                                <span>Total Pertanyaan:</span>
+                                <span id="totalQuestions">0</span>
+                            </div>
+                            <div class="result-item">
+                                <span>Waktu:</span>
+                                <span id="timeTaken">0 detik</span>
+                            </div>
+                        </div>
+
+                        <div class="results-actions">
+                            <button class="btn-secondary" onclick="resetQuiz()">
+                                <i class="fas fa-redo"></i> Coba Lagi
+                            </button>
+                            <button class="btn-primary" onclick="navigateToPage('courses')">
+                                <i class="fas fa-book"></i> Lihat Kursus
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Halaman 4: Progress -->
+        <section class="page" id="progress">
+            <div class="container">
+                <div class="page-header">
+                    <h1>Progress Pembelajaran</h1>
+                    <p>Pantau perkembangan belajar Anda secara real-time</p>
+                </div>
+
+                <!-- User Profile Card -->
+                <div class="profile-card">
+                    <div class="profile-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="profile-info">
+                        <h3 id="userName">Nama Pengguna</h3>
+                        <p id="userLevel">Level: Pemula</p>
+                        <div class="user-stats">
+                            <span><i class="fas fa-fire"></i> Streak: <strong id="userStreak">7 hari</strong></span>
+                            <span><i class="fas fa-trophy"></i> Poin: <strong id="userPoints">1,250</strong></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Progress Statistics -->
+                <div class="progress-stats">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <span class="stat-number" id="completedCourses">0</span>
+                            <span class="stat-label">Kursus Selesai</span>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <span class="stat-number" id="hoursLearned">0</span>
+                            <span class="stat-label">Jam Belajar</span>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-certificate"></i>
+                            </div>
+                            <span class="stat-number" id="certificatesEarned">0</span>
+                            <span class="stat-label">Sertifikat</span>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-fire"></i>
+                            </div>
+                            <span class="stat-number" id="currentStreak">0</span>
+                            <span class="stat-label">Hari Berturut-turut</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Course Progress -->
+                <div class="progress-section">
+                    <h3>Kursus yang Sedang Diikuti</h3>
+                    <div id="progressList" class="progress-list">
+                        <!-- Progress items will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Achievement Section -->
+                <div class="achievement-section">
+                    <h3>Pencapaian</h3>
+                    <div class="achievements-grid" id="achievementsList">
+                        <!-- Achievements will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Halaman 5: Kontak -->
+        <section class="page" id="contact">
+            <div class="container">
+                <div class="page-header">
+                    <h1>Hubungi Kami</h1>
+                    <p>Ada pertanyaan atau saran? Jangan ragu untuk menghubungi tim EduHub</p>
+                </div>
+
+                <div class="contact-content">
+                    <!-- Contact Information -->
+                    <div class="contact-info">
+                        <div class="info-card">
+                            <div class="info-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <h3>Email</h3>
+                            <p>info@eduhub.com</p>
+                            <p>support@eduhub.com</p>
+                        </div>
+
+                        <div class="info-card">
+                            <div class="info-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <h3>Telepon</h3>
+                            <p>+62 812-3456-7890</p>
+                            <p>+62 811-1234-5678</p>
+                        </div>
+
+                        <div class="info-card">
+                            <div class="info-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <h3>Alamat</h3>
+                            <p>Jl. Pendidikan No. 123</p>
+                            <p>Jakarta Selatan, 12345</p>
+                        </div>
+
+                        <div class="info-card">
+                            <div class="info-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <h3>Jam Operasional</h3>
+                            <p>Senin - Jumat: 09:00 - 18:00</p>
+                            <p>Sabtu: 09:00 - 15:00</p>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form -->
+                    <div class="contact-form-container">
+                        <form id="contactForm" class="contact-form">
+                            <h3>Kirim Pesan</h3>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="firstName">Nama Depan *</label>
+                                    <input type="text" id="firstName" name="firstName" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="lastName">Nama Belakang *</label>
+                                    <input type="text" id="lastName" name="lastName" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email *</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="phone">Nomor Telepon</label>
+                                <input type="tel" id="phone" name="phone">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="subject">Subjek *</label>
+                                <select id="subject" name="subject" required>
+                                    <option value="">Pilih Subjek</option>
+                                    <option value="general">Pertanyaan Umum</option>
+                                    <option value="technical">Dukungan Teknis</option>
+                                    <option value="course">Informasi Kursus</option>
+                                    <option value="partnership">Kerjasama</option>
+                                    <option value="feedback">Saran & Masukan</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="message">Pesan *</label>
+                                <textarea id="message" name="message" rows="6" required 
+                                         placeholder="Tuliskan pesan Anda di sini..."></textarea>
+                            </div>
+
+                            <div class="form-group checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="newsletter" name="newsletter">
+                                    <span class="checkmark"></span>
+                                    Saya ingin menerima newsletter dan update terbaru
+                                </label>
+                            </div>
+
+                            <button type="submit" class="btn-primary submit-btn">
+                                <span class="btn-text">Kirim Pesan</span>
+                                <span class="btn-loading" style="display: none;">
+                                    <i class="fas fa-spinner fa-spin"></i> Mengirim...
+                                </span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>EduHub</span>
+                    </div>
+                    <p>Platform pembelajaran online terdepan yang memberikan pengalaman belajar interaktif dan berkualitas.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Pembelajaran</h4>
+                    <ul>
+                        <li><a href="#">Kursus Programming</a></li>
+                        <li><a href="#">Kursus Design</a></li>
+                        <li><a href="#">Kursus Business</a></li>
+                        <li><a href="#">Kursus Science</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Dukungan</h4>
+                    <ul>
+                        <li><a href="#">Pusat Bantuan</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Komunitas</a></li>
+                        <li><a href="#">Kontak</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Perusahaan</h4>
+                    <ul>
+                        <li><a href="#">Tentang Kami</a></li>
+                        <li><a href="#">Karir</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Press</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 EduHub. All rights reserved. Platform Edukasi Terdepan di Indonesia.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Notification Toast -->
+    <div class="notification-container" id="notificationContainer">
+        <!-- Notifications will be injected here -->
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay" style="display: none;">
+        <div class="loading-spinner">
+            <div class="spinner"></div>
+            <p>Memuat...</p>
+        </div>
+    </div>
+
+    <!-- JavaScript Files -->
+    <script src="js/api.js"></script>
+    <script src="js/quiz.js"></script>
+    <script src="js/progress.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

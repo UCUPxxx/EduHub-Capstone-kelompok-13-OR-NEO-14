@@ -1,0 +1,212 @@
+{
+  "courses": [
+    {
+      "id": 1,
+      "title": "JavaScript Fundamentals",
+      "description": "Pelajari dasar-dasar JavaScript dari nol hingga mahir",
+      "category": "programming",
+      "duration": "8 minggu",
+      "difficulty": "Pemula",
+      "students": 1250,
+      "rating": 4.8,
+      "progress": 75,
+      "instructor": "John Doe",
+      "prerequisites": [],
+      "topics": [
+        "Variabel dan Tipe Data",
+        "Function dan Scope",
+        "DOM Manipulation",
+        "Event Handling",
+        "Async/Await",
+        "ES6+ Features"
+      ],
+      "price": 299000,
+      "currency": "IDR",
+      "thumbnail": "https://example.com/js-fundamentals.jpg",
+      "created_at": "2024-01-15T08:00:00Z",
+      "updated_at": "2024-12-01T10:30:00Z",
+      "status": "active"
+    },
+    {
+      "id": 2,
+      "title": "UI/UX Design Mastery",
+      "description": "Menguasai prinsip-prinsip desain untuk pengalaman pengguna yang optimal",
+      "category": "design",
+      "duration": "6 minggu",
+      "difficulty": "Menengah",
+      "students": 890,
+      "rating": 4.9,
+      "progress": 45,
+      "instructor": "Jane Smith",
+      "prerequisites": ["Dasar Desain Grafis"],
+      "topics": [
+        "User Research",
+        "Wireframing",
+        "Prototyping",
+        "Usability Testing",
+        "Design Systems",
+        "Figma/Adobe XD"
+      ],
+      "price": 450000,
+      "currency": "IDR",
+      "thumbnail": "https://example.com/uiux-mastery.jpg",
+      "created_at": "2024-02-20T09:15:00Z",
+      "updated_at": "2024-11-28T14:20:00Z",
+      "status": "active"
+    },
+    {
+      "id": 3,
+      "title": "Digital Marketing Strategy",
+      "description": "Strategi pemasaran digital yang efektif untuk bisnis modern",
+      "category": "business",
+      "duration": "10 minggu",
+      "difficulty": "Lanjutan",
+      "students": 567,
+      "rating": 4.7,
+      "progress": 30,
+      "instructor": "Michael Johnson",
+      "prerequisites": ["Dasar Marketing", "Dasar Analytics"],
+      "topics": [
+        "SEO & SEM",
+        "Social Media Marketing",
+        "Content Marketing",
+        "Email Marketing",
+        "Analytics & ROI",
+        "Marketing Automation"
+      ],
+      "price": 750000,
+      "currency": "IDR",
+      "thumbnail": "https://example.com/digital-marketing.jpg",
+      "created_at": "2024-03-10T11:00:00Z",
+      "updated_at": "2024-12-05T16:45:00Z",
+      "status": "active"
+    },
+    {
+      "id": 4,
+      "title": "Data Science with Python",
+      "description": "Analisis data dan machine learning menggunakan Python",
+      "category": "science",
+      "duration": "12 minggu",
+      "difficulty": "Lanjutan",
+      "students": 734,
+      "rating": 4.8,
+      "progress": 0,
+      "instructor": "Dr. Sarah Wilson",
+      "prerequisites": ["Python Basics", "Statistik Dasar"],
+      "topics": [
+        "Data Cleaning",
+        "Exploratory Data Analysis",
+        "Statistical Analysis",
+        "Machine Learning",
+        "Data Visualization",
+        "Deep Learning Basics"
+      ],
+      "price": 899000,
+      "currency": "IDR",
+      "thumbnail": "https://example.com/data-science-python.jpg",
+      "created_at": "2024-01-25T13:30:00Z",
+      "updated_at": "2024-11-15T09:20:00Z",
+      "status": "active"
+    },
+    {
+      "id": 5,
+      "title": "Web Development Bootcamp",
+      "description": "Kursus lengkap pengembangan web full-stack",
+      "category": "programming",
+      "duration": "16 minggu",
+      "difficulty": "Menengah",
+      "students": 1456,
+      "rating": 4.9,
+      "progress": 60,
+      "instructor": "Alex Rodriguez",
+      "prerequisites": ["HTML/CSS Basics"],
+      "topics": [
+        "Frontend Development",
+        "Backend Development",
+        "Database Design",
+        "API Development",
+        "DevOps Basics",
+        "Project Deployment"
+      ],
+      "price": 1299000,
+      "currency": "IDR",
+      "thumbnail": "https://example.com/web-dev-bootcamp.jpg",
+      "created_at": "2024-02-01T07:45:00Z",
+      "updated_at": "2024-12-10T12:15:00Z",
+      "status": "active"
+    },
+    {
+      "id": 6,
+      "title": "Graphic Design Essentials",
+      "description": "Dasar-dasar desain grafis untuk pemula",
+      "category": "design",
+      "duration": "4 minggu",
+      "difficulty": "Pemula",
+      "students": 923,
+      "rating": 4.6,
+      "progress": 90,
+      "instructor": "Emma Thompson",
+      "prerequisites": [],
+      "topics": [
+        "Design Principles",
+        "Color Theory",
+        "Typography",
+        "Adobe Creative Suite",
+        "Brand Identity",
+        "Print vs Digital Design"
+      ],
+      "price": 199000,
+      "currency": "IDR",
+      "thumbnail": "https://example.com/graphic-design.jpg",
+      "created_at": "2024-03-15T10:20:00Z",
+      "updated_at": "2024-11-30T15:10:00Z",
+      "status": "active"
+    }
+  ],
+  "categories": [
+    {
+      "id": "programming",
+      "name": "Programming",
+      "description": "Kursus pemrograman dan pengembangan software",
+      "icon": "fa-code"
+    },
+    {
+      "id": "design",
+      "name": "Design",
+      "description": "Kursus desain grafis, UI/UX, dan kreativitas visual",
+      "icon": "fa-palette"
+    },
+    {
+      "id": "business",
+      "name": "Business",
+      "description": "Kursus bisnis, marketing, dan entrepreneurship",
+      "icon": "fa-briefcase"
+    },
+    {
+      "id": "science",
+      "name": "Science",
+      "description": "Kursus sains, data science, dan teknologi",
+      "icon": "fa-flask"
+    }
+  ],
+  "difficulty_levels": [
+    {
+      "level": "Pemula",
+      "description": "Cocok untuk yang baru memulai tanpa pengalaman sebelumnya"
+    },
+    {
+      "level": "Menengah",
+      "description": "Membutuhkan pengetahuan dasar di bidang terkait"
+    },
+    {
+      "level": "Lanjutan",
+      "description": "Untuk yang sudah memiliki pengalaman dan ingin mengembangkan keahlian"
+    }
+  ],
+  "metadata": {
+    "total_courses": 6,
+    "last_updated": "2024-12-15T10:00:00Z",
+    "version": "1.0.0",
+    "api_version": "v1"
+  }
+}
