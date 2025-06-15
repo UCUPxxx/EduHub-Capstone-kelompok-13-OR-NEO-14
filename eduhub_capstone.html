@@ -1,0 +1,1305 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduHub - Platform Edukasi Interaktif</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #667eea;
+        }
+
+        .mobile-menu {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 80px;
+            min-height: calc(100vh - 80px);
+        }
+
+        .page {
+            display: none;
+            padding: 2rem 0;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #ff6b6b;
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6);
+        }
+
+        /* Features Grid */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+
+        /* Content Sections */
+        .content-section {
+            background: rgba(255, 255, 255, 0.9);
+            margin: 2rem 0;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .content-section h2 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+
+        /* Course Grid */
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .course-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .course-image {
+            height: 200px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .course-content {
+            padding: 1.5rem;
+        }
+
+        .course-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .course-description {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .course-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            color: #999;
+        }
+
+        /* Quiz Section */
+        .quiz-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .quiz-question {
+            margin-bottom: 1.5rem;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .quiz-option {
+            padding: 1rem;
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .quiz-option:hover {
+            background: #e9ecef;
+            border-color: #667eea;
+        }
+
+        .quiz-option.selected {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .quiz-button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 1rem;
+            transition: background 0.3s ease;
+        }
+
+        .quiz-button:hover {
+            background: #5a6fd8;
+        }
+
+        /* Progress Section */
+        .progress-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .progress-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .progress-bar {
+            width: 200px;
+            height: 10px;
+            background: #e9ecef;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            transition: width 0.3s ease;
+        }
+
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .btn-primary {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background: #5a6fd8;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 2rem 0;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .course-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .progress-bar {
+                width: 100px;
+            }
+        }
+
+        /* Notification */
+        .notification {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: #4CAF50;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            z-index: 1001;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        .notification.error {
+            background: #f44336;
+        }
+
+        /* Loading Spinner */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #667eea;
+            display: block;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="#" class="logo">EduHub</a>
+            <ul class="nav-links">
+                <li><a href="#" class="nav-link active" data-page="home">Beranda</a></li>
+                <li><a href="#" class="nav-link" data-page="courses">Kursus</a></li>
+                <li><a href="#" class="nav-link" data-page="quiz">Quiz</a></li>
+                <li><a href="#" class="nav-link" data-page="progress">Progress</a></li>
+                <li><a href="#" class="nav-link" data-page="contact">Kontak</a></li>
+            </ul>
+            <button class="mobile-menu" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Halaman 1: Beranda -->
+        <div class="page active" id="home">
+            <section class="hero">
+                <div class="container">
+                    <h1>Selamat Datang di EduHub</h1>
+                    <p>Platform pembelajaran online yang memberikan pengalaman belajar interaktif dan menyenangkan untuk semua tingkat pendidikan.</p>
+                    <a href="#" class="cta-button" onclick="showPage('courses')">Mulai Belajar</a>
+                </div>
+            </section>
+
+            <section class="container">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-number" id="totalStudents">0</span>
+                        <span class="stat-label">Total Siswa</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number" id="totalCourses">0</span>
+                        <span class="stat-label">Kursus Tersedia</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number" id="totalQuizzes">0</span>
+                        <span class="stat-label">Quiz Selesai</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number" id="successRate">0%</span>
+                        <span class="stat-label">Tingkat Keberhasilan</span>
+                    </div>
+                </div>
+
+                <div class="features">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-book-open"></i>
+                        </div>
+                        <h3>Materi Pembelajaran</h3>
+                        <p>Akses ribuan materi pembelajaran berkualitas tinggi dari berbagai bidang ilmu pengetahuan.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3>Quiz Interaktif</h3>
+                        <p>Uji pemahaman Anda dengan quiz interaktif yang menantang dan mendidik.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>Tracking Progress</h3>
+                        <p>Pantau perkembangan belajar Anda dengan sistem tracking yang komprehensif.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Halaman 2: Kursus -->
+        <div class="page" id="courses">
+            <div class="container">
+                <div class="content-section">
+                    <h2>Kursus Tersedia</h2>
+                    <p>Pilih kursus yang sesuai dengan minat dan kebutuhan belajar Anda.</p>
+                    
+                    <div class="form-group">
+                        <label for="courseFilter">Filter Kategori:</label>
+                        <select id="courseFilter" onchange="filterCourses()">
+                            <option value="">Semua Kategori</option>
+                            <option value="programming">Programming</option>
+                            <option value="design">Design</option>
+                            <option value="business">Business</option>
+                            <option value="science">Science</option>
+                        </select>
+                    </div>
+
+                    <div class="course-grid" id="courseGrid">
+                        <!-- Courses will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Halaman 3: Quiz -->
+        <div class="page" id="quiz">
+            <div class="container">
+                <div class="content-section">
+                    <h2>Quiz Interaktif</h2>
+                    <p>Uji kemampuan Anda dengan quiz yang telah disiapkan.</p>
+                </div>
+
+                <div class="quiz-container">
+                    <div id="quizContent">
+                        <div class="form-group">
+                            <label for="quizCategory">Pilih Kategori Quiz:</label>
+                            <select id="quizCategory" onchange="loadQuiz()">
+                                <option value="">Pilih Kategori</option>
+                                <option value="programming">Programming</option>
+                                <option value="design">Design</option>
+                                <option value="general">Pengetahuan Umum</option>
+                            </select>
+                        </div>
+                        
+                        <div id="quizQuestions" style="display: none;">
+                            <div class="quiz-question">
+                                <h3 id="questionText">Pertanyaan akan muncul di sini</h3>
+                                <div class="quiz-options" id="quizOptions">
+                                    <!-- Options will be loaded here -->
+                                </div>
+                                <button class="quiz-button" onclick="submitAnswer()">Jawab</button>
+                                <button class="quiz-button" onclick="nextQuestion()" style="display: none;" id="nextBtn">Selanjutnya</button>
+                            </div>
+                        </div>
+                        
+                        <div id="quizResults" style="display: none;">
+                            <h3>Hasil Quiz</h3>
+                            <p id="scoreText">Skor Anda: <span id="finalScore">0</span>/10</p>
+                            <button class="quiz-button" onclick="restartQuiz()">Mulai Lagi</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Halaman 4: Progress -->
+        <div class="page" id="progress">
+            <div class="container">
+                <div class="content-section">
+                    <h2>Progress Pembelajaran</h2>
+                    <p>Pantau perkembangan belajar Anda secara real-time.</p>
+                </div>
+
+                <div class="progress-container">
+                    <h3>Kursus yang Sedang Diikuti</h3>
+                    <div id="progressList">
+                        <!-- Progress items will be loaded here -->
+                    </div>
+                </div>
+
+                <div class="progress-container">
+                    <h3>Statistik Pembelajaran</h3>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <span class="stat-number" id="completedCourses">0</span>
+                            <span class="stat-label">Kursus Selesai</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number" id="hoursLearned">0</span>
+                            <span class="stat-label">Jam Belajar</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number" id="certificatesEarned">0</span>
+                            <span class="stat-label">Sertifikat</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number" id="currentStreak">0</span>
+                            <span class="stat-label">Hari Berturut-turut</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Halaman 5: Kontak -->
+        <div class="page" id="contact">
+            <div class="container">
+                <div class="content-section">
+                    <h2>Hubungi Kami</h2>
+                    <p>Ada pertanyaan atau saran? Jangan ragu untuk menghubungi tim EduHub.</p>
+                </div>
+
+                <div class="content-section">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                        <div>
+                            <h3>Informasi Kontak</h3>
+                            <div style="margin: 1rem 0;">
+                                <p><i class="fas fa-envelope"></i> info@eduhub.com</p>
+                                <p><i class="fas fa-phone"></i> +62 812-3456-7890</p>
+                                <p><i class="fas fa-map-marker-alt"></i> Jakarta, Indonesia</p>
+                            </div>
+                            
+                            <h3>Jam Operasional</h3>
+                            <div style="margin: 1rem 0;">
+                                <p>Senin - Jumat: 09:00 - 18:00 WIB</p>
+                                <p>Sabtu: 09:00 - 15:00 WIB</p>
+                                <p>Minggu: Tutup</p>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h3>Kirim Pesan</h3>
+                            <form id="contactForm" onsubmit="submitContact(event)">
+                                <div class="form-group">
+                                    <label for="name">Nama Lengkap</label>
+                                    <input type="text" id="name" name="name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" id="email" name="email" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="subject">Subjek</label>
+                                    <input type="text" id="subject" name="subject" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="message">Pesan</label>
+                                    <textarea id="message" name="message" rows="5" required></textarea>
+                                </div>
+                                <button type="submit" class="btn-primary">Kirim Pesan</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 EduHub. All rights reserved. Platform Edukasi Terdepan di Indonesia.</p>
+        </div>
+    </footer>
+
+    <div class="notification" id="notification">
+        <span id="notificationText"></span>
+    </div>
+
+    <script>
+        // Global variables for data management
+        let courses = [];
+        let userProgress = {};
+        let quizData = {};
+        let currentQuiz = null;
+        let currentQuestionIndex = 0;
+        let userAnswers = [];
+        let score = 0;
+
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeApp();
+        });
+
+        function initializeApp() {
+            loadCourses();
+            loadUserProgress();
+            initializeQuizData();
+            updateStatistics();
+            setupEventListeners();
+        }
+
+        function setupEventListeners() {
+            // Navigation event listeners
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const page = this.dataset.page;
+                    showPage(page);
+                });
+            });
+        }
+
+        // Navigation functionality
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show selected page
+            document.getElementById(pageId).classList.add('active');
+            
+            // Update navigation active state
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            document.querySelector(`[data-page="${pageId}"]`).classList.add('active');
+            
+            // Load page-specific data
+            switch(pageId) {
+                case 'courses':
+                    displayCourses();
+                    break;
+                case 'progress':
+                    displayProgress();
+                    break;
+                case 'quiz':
+                    resetQuiz();
+                    break;
+            }
+        }
+
+        function toggleMobileMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+
+        // API Integration - Functionality 1: Course Management
+        function loadCourses() {
+            // Simulating API call
+            setTimeout(() => {
+                courses = [
+                    {
+                        id: 1,
+                        title: "JavaScript Fundamentals",
+                        description: "Pelajari dasar-dasar JavaScript dari nol hingga mahir",
+                        category: "programming",
+                        duration: "8 minggu",
+                        difficulty: "Pemula",
+                        students: 1250,
+                        rating: 4.8,
+                        progress: 75
+                    },
+                    {
+                        id: 2,
+                        title: "UI/UX Design Mastery",
+                        description: "Menguasai prinsip-prinsip desain untuk pengalaman pengguna yang optimal",
+                        category: "design",
+                        duration: "6 minggu",
+                        difficulty: "Menengah",
+                        students: 890,
+                        rating: 4.9,
+                        progress: 45
+                    },
+                    {
+                        id: 3,
+                        title: "Digital Marketing Strategy",
+                        description: "Strategi pemasaran digital yang efektif untuk bisnis modern",
+                        category: "business",
+                        duration: "10 minggu",
+                        difficulty: "Lanjutan",
+                        students: 567,
+                        rating: 4.7,
+                        progress: 30
+                    },
+                    {
+                        id: 4,
+                        title: "Data Science with Python",
+                        description: "Analisis data dan machine learning menggunakan Python",
+                        category: "science",
+                        duration: "12 minggu",
+                        difficulty: "Lanjutan",
+                        students: 734,
+                        rating: 4.8,
+                        progress: 0
+                    },
+                    {
+                        id: 5,
+                        title: "Web Development Bootcamp",
+                        description: "Kursus lengkap pengembangan web full-stack",
+                        category: "programming",
+                        duration: "16 minggu",
+                        difficulty: "Menengah",
+                        students: 1456,
+                        rating: 4.9,
+                        progress: 60
+                    },
+                    {
+                        id: 6,
+                        title: "Graphic Design Essentials",
+                        description: "Dasar-dasar desain grafis untuk pemula",
+                        category: "design",
+                        duration: "4 minggu",
+                        difficulty: "Pemula",
+                        students: 923,
+                        rating: 4.6,
+                        progress: 90
+                    }
+                ];
+                displayCourses();
+            }, 500);
+        }
+
+        function displayCourses() {
+            const courseGrid = document.getElementById('courseGrid');
+            const filter = document.getElementById('courseFilter').value;
+            
+            let filteredCourses = courses;
+            if (filter) {
+                filteredCourses = courses.filter(course => course.category === filter);
+            }
+            
+            courseGrid.innerHTML = filteredCourses.map(course => `
+                <div class="course-card">
+                    <div class="course-image">
+                        <i class="fas ${getCourseIcon(course.category)}"></i>
+                    </div>
+                    <div class="course-content">
+                        <div class="course-title">${course.title}</div>
+                        <div class="course-description">${course.description}</div>
+                        <div class="course-meta">
+                            <span><i class="fas fa-clock"></i> ${course.duration}</span>
+                            <span><i class="fas fa-users"></i> ${course.students}</span>
+                            <span><i class="fas fa-star"></i> ${course.rating}</span>
+                        </div>
+                        <div class="progress-bar" style="margin-top: 1rem;">
+                            <div class="progress-fill" style="width: ${course.progress}%"></div>
+                        </div>
+                        <button class="btn-primary" onclick="enrollCourse(${course.id})" style="margin-top: 1rem; width: 100%;">
+                            ${course.progress > 0 ? 'Lanjutkan' : 'Daftar'}
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function getCourseIcon(category) {
+            const icons = {
+                'programming': 'fa-code',
+                'design': 'fa-palette',
+                'business': 'fa-briefcase',
+                'science': 'fa-flask'
+            };
+            return icons[category] || 'fa-book';
+        }
+
+        function filterCourses() {
+            displayCourses();
+        }
+
+        // API Integration - Functionality 2: Quiz System
+        function initializeQuizData() {
+            quizData = {
+                programming: [
+                    {
+                        question: "Apa itu JavaScript?",
+                        options: [
+                            "Bahasa pemrograman server-side",
+                            "Bahasa pemrograman client-side",
+                            "Database management system",
+                            "Operating system"
+                        ],
+                        correct: 1
+                    },
+                    {
+                        question: "Manakah yang bukan merupakan tipe data primitif di JavaScript?",
+                        options: ["String", "Number", "Boolean", "Array"],
+                        correct: 3
+                    },
+                    {
+                        question: "Apa fungsi dari method 'getElementById()'?",
+                        options: [
+                            "Membuat element baru",
+                            "Menghapus element",
+                            "Mengambil element berdasarkan ID",
+                            "Mengubah style element"
+                        ],
+                        correct: 2
+                    }
+                ],
+                design: [
+                    {
+                        question: "Apa itu UX Design?",
+                        options: [
+                            "User Experience Design",
+                            "User Interface Design",
+                            "Universal Experience Design",
+                            "Unique Experience Design"
+                        ],
+                        correct: 0
+                    },
+                    {
+                        question: "Prinsip mana yang paling penting dalam desain UI?",
+                        options: ["Warna", "Typography", "Usability", "Animasi"],
+                        correct: 2
+                    }
+                ],
+                general: [
+                    {
+                        question: "Apa kepanjangan dari HTML?",
+                        options: [
+                            "Hypertext Markup Language",
+                            "Home Tool Markup Language",
+                            "Hyperlinks and Text Markup Language",
+                            "Hypertext Machine Language"
+                        ],
+                        correct: 0
+                    },
+                    {
+                        question: "Siapa pendiri Microsoft?",
+                        options: ["Steve Jobs", "Bill Gates", "Mark Zuckerberg", "Larry Page"],
+                        correct: 1
+                    }
+                ]
+            };
+        }
+
+        function loadQuiz() {
+            const category = document.getElementById('quizCategory').value;
+            if (!category) return;
+            
+            currentQuiz = quizData[category];
+            currentQuestionIndex = 0;
+            userAnswers = [];
+            score = 0;
+            
+            document.getElementById('quizQuestions').style.display = 'block';
+            document.getElementById('quizResults').style.display = 'none';
+            
+            showQuestion();
+        }
+
+        function showQuestion() {
+            if (currentQuestionIndex >= currentQuiz.length) {
+                showResults();
+                return;
+            }
+            
+            const question = currentQuiz[currentQuestionIndex];
+            document.getElementById('questionText').textContent = `${currentQuestionIndex + 1}. ${question.question}`;
+            
+            const optionsContainer = document.getElementById('quizOptions');
+            optionsContainer.innerHTML = question.options.map((option, index) => `
+                <div class="quiz-option" onclick="selectOption(${index})">
+                    ${option}
+                </div>
+            `).join('');
+            
+            document.getElementById('nextBtn').style.display = 'none';
+        }
+
+        function selectOption(optionIndex) {
+            // Remove previous selections
+            document.querySelectorAll('.quiz-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            
+            // Add selection to clicked option
+            document.querySelectorAll('.quiz-option')[optionIndex].classList.add('selected');
+            
+            // Store answer
+            userAnswers[currentQuestionIndex] = optionIndex;
+        }
+
+        function submitAnswer() {
+            if (userAnswers[currentQuestionIndex] === undefined) {
+                showNotification('Pilih jawaban terlebih dahulu!', 'error');
+                return;
+            }
+            
+            const correct = currentQuiz[currentQuestionIndex].correct;
+            if (userAnswers[currentQuestionIndex] === correct) {
+                score++;
+                showNotification('Jawaban benar! 🎉');
+            } else {
+                showNotification('Jawaban salah. Coba lagi! 🤔', 'error');
+            }
+            
+            document.getElementById('nextBtn').style.display = 'inline-block';
+        }
+
+        function nextQuestion() {
+            currentQuestionIndex++;
+            showQuestion();
+        }
+
+        function showResults() {
+            document.getElementById('quizQuestions').style.display = 'none';
+            document.getElementById('quizResults').style.display = 'block';
+            document.getElementById('finalScore').textContent = score;
+            
+            // Update user progress
+            updateQuizProgress();
+        }
+
+        function restartQuiz() {
+            document.getElementById('quizCategory').value = '';
+            document.getElementById('quizQuestions').style.display = 'none';
+            document.getElementById('quizResults').style.display = 'none';
+        }
+
+        function resetQuiz() {
+            restartQuiz();
+        }
+
+        // API Integration - Functionality 3: Progress Tracking
+        function loadUserProgress() {
+            // Simulating API call
+            setTimeout(() => {
+                userProgress = {
+                    totalCourses: 6,
+                    completedCourses: 2,
+                    hoursLearned: 45,
+                    certificatesEarned: 2,
+                    currentStreak: 7,
+                    quizzesCompleted: 15,
+                    averageScore: 85
+                };
+                displayProgress();
+            }, 300);
+        }
+
+        function displayProgress() {
+            const progressList = document.getElementById('progressList');
+            
+            progressList.innerHTML = courses.map(course => `
+                <div class="progress-item">
+                    <div>
+                        <strong>${course.title}</strong>
+                        <div style="color: #666; font-size: 0.9rem;">${course.category}</div>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: ${course.progress}%"></div>
+                    </div>
+                    <div style="color: #667eea; font-weight: bold;">${course.progress}%</div>
+                </div>
+            `).join('');
+            
+            // Update progress statistics
+            document.getElementById('completedCourses').textContent = userProgress.completedCourses;
+            document.getElementById('hoursLearned').textContent = userProgress.hoursLearned;
+            document.getElementById('certificatesEarned').textContent = userProgress.certificatesEarned;
+            document.getElementById('currentStreak').textContent = userProgress.currentStreak;
+        }
+
+        function updateQuizProgress() {
+            userProgress.quizzesCompleted++;
+            userProgress.hoursLearned += 0.5;
+            
+            // Simulate API call to update progress
+            setTimeout(() => {
+                showNotification('Progress berhasil diperbarui!');
+                updateStatistics();
+            }, 500);
+        }
+
+        // API Integration - Functionality 4: User Statistics
+        function updateStatistics() {
+            // Animate counter updates
+            animateCounter('totalStudents', 1250);
+            animateCounter('totalCourses', 6);
+            animateCounter('totalQuizzes', userProgress.quizzesCompleted || 15);
+            
+            // Update success rate
+            const successRate = userProgress.averageScore || 85;
+            document.getElementById('successRate').textContent = successRate + '%';
+        }
+
+        function animateCounter(elementId, targetValue) {
+            const element = document.getElementById(elementId);
+            const startValue = 0;
+            const duration = 2000;
+            const startTime = performance.now();
+            
+            function updateCounter(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const currentValue = Math.floor(startValue + (targetValue - startValue) * progress);
+                
+                element.textContent = currentValue;
+                
+                if (progress < 1) {
+                    requestAnimationFrame(updateCounter);
+                }
+            }
+            
+            requestAnimationFrame(updateCounter);
+        }
+
+        // API Integration - Functionality 5: Contact Form
+        function submitContact(event) {
+            event.preventDefault();
+            
+            const formData = new FormData(event.target);
+            const contactData = {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                subject: formData.get('subject'),
+                message: formData.get('message'),
+                timestamp: new Date().toISOString()
+            };
+            
+            // Show loading state
+            const submitBtn = event.target.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.innerHTML = '<span class="loading"></span> Mengirim...';
+            submitBtn.disabled = true;
+            
+            // Simulate API call
+            setTimeout(() => {
+                // Reset form
+                event.target.reset();
+                
+                // Reset button
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+                
+                // Show success notification
+                showNotification('Pesan berhasil dikirim! Kami akan segera menghubungi Anda.');
+                
+                // In real application, you would send this data to your backend
+                console.log('Contact form submitted:', contactData);
+            }, 2000);
+        }
+
+        // Course enrollment functionality
+        function enrollCourse(courseId) {
+            const course = courses.find(c => c.id === courseId);
+            if (!course) return;
+            
+            // Simulate enrollment process
+            showNotification(`Berhasil mendaftar kursus: ${course.title}!`);
+            
+            // Update course progress if it's a new enrollment
+            if (course.progress === 0) {
+                course.progress = 5; // Start with 5% progress
+                displayCourses();
+            }
+            
+            // Switch to progress page
+            setTimeout(() => {
+                showPage('progress');
+            }, 1500);
+        }
+
+        // Notification system
+        function showNotification(message, type = 'success') {
+            const notification = document.getElementById('notification');
+            const notificationText = document.getElementById('notificationText');
+            
+            notificationText.textContent = message;
+            notification.className = `notification ${type}`;
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+        // Responsive design enhancements
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                document.querySelector('.nav-links').classList.remove('active');
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Keyboard navigation support
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                document.querySelector('.nav-links').classList.remove('active');
+            }
+        });
+
+        // Auto-save progress (simulated)
+        setInterval(function() {
+            // Simulate auto-save progress
+            if (Math.random() > 0.95) { // 5% chance every interval
+                courses.forEach(course => {
+                    if (course.progress > 0 && course.progress < 100 && Math.random() > 0.8) {
+                        course.progress = Math.min(course.progress + Math.floor(Math.random() * 5), 100);
+                    }
+                });
+            }
+        }, 10000); // Every 10 seconds
+
+        // Initialize tooltips and interactive elements
+        function initializeInteractiveElements() {
+            // Add hover effects to cards
+            document.querySelectorAll('.course-card, .feature-card, .stat-card').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+        }
+
+        // Call initialization functions
+        setTimeout(initializeInteractiveElements, 1000);
+
+        // Service Worker registration for PWA capabilities (optional)
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(function(registration) {
+                        console.log('ServiceWorker registration successful');
+                    })
+                    .catch(function(err) {
+                        console.log('ServiceWorker registration failed');
+                    });
+            });
+        }
+
+        // Performance monitoring
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                const loadTime = performance.timing.loadEventEnd - performance.timing.navigationStart;
+                console.log('Page load time:', loadTime + 'ms');
+            }, 0);
+        });
+    </script>
+</body>
+</html>
