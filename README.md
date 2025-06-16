@@ -188,8 +188,8 @@ Platform sudah dirancang untuk integrasi dengan backend API:
 
 ### Kontak Tim
 - **Email**: info@eduhub.com
-- **Phone**: +62 812-3456-7890
-- **Location**: Jakarta, Indonesia
+- **Phone**: +62 822-7881-8985
+- **Location**: Padang, Indonesia
 
 ### Jam Operasional
 - **Senin - Jumat**: 09:00 - 18:00 WIB
