@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - EduHub</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .floating-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .shape {
+            position: absolute;
+            opacity: 0.1;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .shape1 { top: 20%; left: 10%; width: 60px; height: 60px; background: white; border-radius: 50%; animation-delay: 0s; }
+        .shape2 { top: 60%; right: 10%; width: 80px; height: 80px; background: white; border-radius: 20px; animation-delay: 2s; }
+        .shape3 { bottom: 20%; left: 20%; width: 40px; height: 40px; background: white; border-radius: 50%; animation-delay: 4s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(180deg); }
+        }
+
+        .login-wrapper {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            padding: 3rem;
+            width: 100%;
+            max-width: 420px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            position: relative;
+            z-index: 10;
+            animation: slideUp 0.6s ease-out;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .brand-section {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .brand-logo {
+            font-size: 2.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .welcome-text {
+            font-size: 1.6rem;
+            color: #333;
+            margin-bottom: 0.3rem;
+            font-weight: 600;
+        }
+
+        .subtitle {
+            color: #777;
+            font-size: 0.95rem;
+        }
+
+        .auth-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
+        }
+
+        .input-field {
+            position: relative;
+        }
+
+        .field-label {
+            display: block;
+            color: #555;
+            font-weight: 500;
+            margin-bottom: 0.6rem;
+            font-size: 0.9rem;
+        }
+
+        .input-container {
+            position: relative;
+        }
+
+        .text-input {
+            width: 100%;
+            padding: 1.1rem 1.1rem 1.1rem 3.2rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: #fafafa;
+        }
+
+        .text-input:focus {
+            outline: none;
+            border-color: #667eea;
+            background: white;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+        }
+
+        .field-icon {
+            position: absolute;
+            left: 1.1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #9ca3af;
+            font-size: 1.1rem;
+        }
+
+        .show-password {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #9ca3af;
+            cursor: pointer;
+            padding: 0.5rem;
+            font-size: 1rem;
+            border-radius: 6px;
+            transition: color 0.3s ease;
+        }
+
+        .show-password:hover {
+            color: #667eea;
+        }
+
+        .form-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 1.2rem 0;
+        }
+
+        .checkbox-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .custom-checkbox {
+            width: 16px;
+            height: 16px;
+            accent-color: #667eea;
+        }
+
+        .checkbox-label {
+            color: #666;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        .forgot-link {
+            color: #667eea;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .forgot-link:hover {
+            color: #5a67d8;
+            text-decoration: underline;
+        }
+
+        .submit-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 1.2rem;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .submit-button:active {
+            transform: translateY(0);
+        }
+
+        .loading-spinner {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #ffffff40;
+            border-top: 2px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 0.5rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 1.5rem 0;
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: #e5e7eb;
+        }
+
+        .divider span {
+            padding: 0 1rem;
+        }
+
+        .social-login {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-btn {
+            flex: 1;
+            padding: 0.9rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            background: white;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .social-btn:hover {
+            border-color: #667eea;
+            background: #f8faff;
+        }
+
+        .register-link {
+            text-align: center;
+            margin-top: 2rem;
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .register-link a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .register-link a:hover {
+            text-decoration: underline;
+        }
+
+        .alert {
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            display: none;
+        }
+
+        .alert-error {
+            background: #fef2f2;
+            color: #dc2626;
+            border: 1px solid #fecaca;
+        }
+
+        .alert-success {
+            background: #f0fdf4;
+            color: #16a34a;
+            border: 1px solid #bbf7d0;
+        }
+
+        .user-status {
+            background: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeaa7;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            display: none;
+        }
+
+        .logout-btn {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            margin-left: 1rem;
+            transition: background 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            background: #c82333;
+        }
+
+        @media (max-width: 480px) {
+            .login-wrapper {
+                margin: 1rem;
+                padding: 2rem;
+            }
+            
+            .social-login {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-shapes">
+        <div class="shape shape1"></div>
+        <div class="shape shape2"></div>
+        <div class="shape shape3"></div>
+    </div>
+
+    <div class="login-wrapper">
+        <div class="brand-section">
+            <div class="brand-logo">EduHub</div>
+            <h1 class="welcome-text">Selamat Datang</h1>
+            <p class="subtitle">Silakan masuk ke akun Anda</p>
+        </div>
+
+        <div class="user-status" id="userStatus">
+            <i class="fas fa-info-circle"></i>
+            <span id="statusMessage"></span>
+            <button class="logout-btn" onclick="logout()">Logout</button>
+        </div>
+
+        <div class="alert alert-error" id="errorAlert">
+            <i class="fas fa-exclamation-circle"></i>
+            <span id="errorMessage"></span>
+        </div>
+
+        <div class="alert alert-success" id="successAlert">
+            <i class="fas fa-check-circle"></i>
+            <span id="successMessage"></span>
+        </div>
+
+        <form class="auth-form" id="loginForm">
+            <div class="input-field">
+                <label for="email" class="field-label">Email atau Username</label>
+                <div class="input-container">
+                    <i class="fas fa-user field-icon"></i>
+                    <input type="text" id="email" class="text-input" placeholder="Masukkan email atau username" required oninput="checkAutoLogin()">
+                </div>
+            </div>
+
+            <div class="input-field">
+                <label for="password" class="field-label">Password</label>
+                <div class="input-container">
+                    <i class="fas fa-lock field-icon"></i>
+                    <input type="password" id="password" class="text-input" placeholder="Masukkan password" required oninput="checkAutoLogin()">
+                    <button type="button" class="show-password" onclick="togglePassword()">
+                        <i class="fas fa-eye" id="passwordIcon"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="form-options">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="remember" class="custom-checkbox">
+                    <label for="remember" class="checkbox-label">Ingat saya</label>
+                </div>
+                <a href="#" class="forgot-link">Lupa password?</a>
+            </div>
+
+            <button type="submit" class="submit-button">
+                <div class="loading-spinner" id="loadingSpinner"></div>
+                <span id="buttonText">Masuk</span>
+            </button>
+        </form>
+
+        <div class="divider">
+            <span>atau masuk dengan</span>
+        </div>
+
+        <div class="social-login">
+            <button class="social-btn" onclick="socialLogin('google')">
+                <i class="fab fa-google" style="color: #db4437;"></i>
+                Google
+            </button>
+            <button class="social-btn" onclick="socialLogin('facebook')">
+                <i class="fab fa-facebook" style="color: #4267B2;"></i>
+                Facebook
+            </button>
+        </div>
+
+        <div class="register-link">
+            Belum punya akun? <a href="#" onclick="showRegister()">Daftar sekarang</a>
+        </div>
+    </div>
+
+    <script>
+        // Demo credentials
+        const validCredentials = {
+            'admin@eduhub.com': 'admin123',
+            'student@eduhub.com': 'student123',
+            'kelompok 13 Ainul': 'ORNEO14'
+        };
+
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            handleLogin();
+        });
+
+        // Auto-login when both fields are filled
+        function checkAutoLogin() {
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+            
+            if (email && password && validCredentials[email] && validCredentials[email] === password) {
+                // Small delay to show user what they typed
+                setTimeout(() => {
+                    handleLogin();
+                }, 500);
+            }
+        }
+
+        function handleLogin() {
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+            
+            if (!email || !password) {
+                showAlert('Harap isi semua field!', 'error');
+                return;
+            }
+
+            setLoading(true);
+            
+            // Simulate API call
+            setTimeout(() => {
+                if (validCredentials[email] && validCredentials[email] === password) {
+                    showAlert('Login berhasil! Mengalihkan ke dashboard...', 'success');
+                    
+                    // Save login state
+                    setLoginState(email);
+                    
+                    // Redirect to dashboard after short delay
+                    setTimeout(() => {
+                        window.location.href = 'dashboard.html';
+                    }, 1500);
+                    
+                } else {
+                    showAlert('Email/username atau password salah!', 'error');
+                    setLoading(false);
+                }
+            }, 1000);
+        }
+
+        function setLoginState(email) {
+            // Store login state (can be used by dashboard.html)
+            if (typeof(Storage) !== "undefined") {
+                localStorage.setItem('isLoggedIn', 'true');
+                localStorage.setItem('userEmail', email);
+                localStorage.setItem('loginTime', new Date().toISOString());
+            }
+            
+            // Also store in memory for current session
+            window.currentUser = {
+                email: email,
+                isLoggedIn: true,
+                loginTime: new Date().toLocaleString()
+            };
+        }
+
+        function showLoggedInStatus(email) {
+            const userStatus = document.getElementById('userStatus');
+            const statusMessage = document.getElementById('statusMessage');
+            const loginForm = document.getElementById('loginForm');
+            
+            statusMessage.textContent = `Anda sudah login sebagai: ${email}`;
+            userStatus.style.display = 'block';
+            loginForm.style.display = 'none';
+        }
+
+        function logout() {
+            // Clear login state
+            window.currentUser = null;
+            
+            // Clear localStorage
+            if (typeof(Storage) !== "undefined") {
+                localStorage.removeItem('isLoggedIn');
+                localStorage.removeItem('userEmail');
+                localStorage.removeItem('loginTime');
+            }
+            
+            // Hide status and show form
+            document.getElementById('userStatus').style.display = 'none';
+            document.getElementById('loginForm').style.display = 'flex';
+            
+            // Clear form
+            document.getElementById('email').value = '';
+            document.getElementById('password').value = '';
+            
+            showAlert('Anda telah logout', 'success');
+        }
+
+        function togglePassword() {
+            const passwordField = document.getElementById('password');
+            const passwordIcon = document.getElementById('passwordIcon');
+            
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                passwordIcon.className = 'fas fa-eye-slash';
+            } else {
+                passwordField.type = 'password';
+                passwordIcon.className = 'fas fa-eye';
+            }
+        }
+
+        function setLoading(isLoading) {
+            const spinner = document.getElementById('loadingSpinner');
+            const buttonText = document.getElementById('buttonText');
+            const submitButton = document.querySelector('.submit-button');
+            
+            if (isLoading) {
+                spinner.style.display = 'inline-block';
+                buttonText.textContent = 'Memproses...';
+                submitButton.disabled = true;
+            } else {
+                spinner.style.display = 'none';
+                buttonText.textContent = 'Masuk';
+                submitButton.disabled = false;
+            }
+        }
+
+        function showAlert(message, type) {
+  const errorAlert = document.getElementById('errorAlert');
+  const successAlert = document.getElementById('successAlert');
+
+  // Hide all alerts first
+  errorAlert.style.display = 'none';
+  successAlert.style.display = 'none';
+
+  if (type === 'error') {
+    document.getElementById('errorMessage').innerHTML = message; // ✅ ubah ini
+    errorAlert.style.display = 'block';
+  } else {
+    document.getElementById('successMessage').innerHTML = message; // ✅ ubah ini
+    successAlert.style.display = 'block';
+  }
+
+  // Auto hide after 5 seconds
+  setTimeout(() => {
+    errorAlert.style.display = 'none';
+    successAlert.style.display = 'none';
+  }, 5000);
+}
+
+
+        function showRegister() {
+            showAlert('Halaman registrasi sedang dalam pengembangan', 'error');
+        }
+
+        // Show demo credentials hint on page load
+        window.addEventListener('load', function() {
+            // Always show the login form first, don't auto-redirect
+            // Clear any previous login state to force fresh login
+            if (typeof(Storage) !== "undefined") {
+                localStorage.removeItem('isLoggedIn');
+                localStorage.removeItem('userEmail');
+                localStorage.removeItem('loginTime');
+            }
+            
+            // Show demo credentials hint
+            setTimeout(() => {
+                showAlert('Username: kelompok 13 Ainul<br>&emsp;&nbsp;Password : ORNEO14', 'success');
+            }, 1000);
+        });
+
+        // Handle enter key on form fields and auto-login check
+        document.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' && e.target.matches('.text-input')) {
+                handleLogin();
+            }
+        });
+
+        // Add input event listeners for auto-login
+        document.getElementById('email').addEventListener('input', checkAutoLogin);
+        document.getElementById('password').addEventListener('input', checkAutoLogin);
+    </script>
+</body>
+</html>
