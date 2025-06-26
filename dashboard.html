@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -95,8 +96,15 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* Hero Section */
@@ -445,8 +453,13 @@
         }
 
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
 
         /* Stats Cards */
@@ -478,6 +491,7 @@
         }
     </style>
 </head>
+
 <body>
     <header>
         <nav class="container">
@@ -501,7 +515,8 @@
             <section class="hero">
                 <div class="container">
                     <h1>Selamat Datang di EduHub</h1>
-                    <p>Platform pembelajaran online yang memberikan pengalaman belajar interaktif dan menyenangkan untuk semua tingkat pendidikan.</p>
+                    <p>Platform pembelajaran online yang memberikan pengalaman belajar interaktif dan menyenangkan untuk
+                        semua tingkat pendidikan.</p>
                     <a href="#" class="cta-button" onclick="showPage('courses')">Mulai Belajar</a>
                 </div>
             </section>
@@ -532,7 +547,8 @@
                             <i class="fas fa-book-open"></i>
                         </div>
                         <h3>Materi Pembelajaran</h3>
-                        <p>Akses ribuan materi pembelajaran berkualitas tinggi dari berbagai bidang ilmu pengetahuan.</p>
+                        <p>Akses ribuan materi pembelajaran berkualitas tinggi dari berbagai bidang ilmu pengetahuan.
+                        </p>
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon">
@@ -558,7 +574,7 @@
                 <div class="content-section">
                     <h2>Kursus Tersedia</h2>
                     <p>Pilih kursus yang sesuai dengan minat dan kebutuhan belajar Anda.</p>
-                    
+
                     <div class="form-group">
                         <label for="courseFilter">Filter Kategori:</label>
                         <select id="courseFilter" onchange="filterCourses()">
@@ -596,7 +612,7 @@
                                 <option value="general">Pengetahuan Umum</option>
                             </select>
                         </div>
-                        
+
                         <div id="quizQuestions" style="display: none;">
                             <div class="quiz-question">
                                 <h3 id="questionText">Pertanyaan akan muncul di sini</h3>
@@ -604,10 +620,11 @@
                                     <!-- Options will be loaded here -->
                                 </div>
                                 <button class="quiz-button" onclick="submitAnswer()">Jawab</button>
-                                <button class="quiz-button" onclick="nextQuestion()" style="display: none;" id="nextBtn">Selanjutnya</button>
+                                <button class="quiz-button" onclick="nextQuestion()" style="display: none;"
+                                    id="nextBtn">Selanjutnya</button>
                             </div>
                         </div>
-                        
+
                         <div id="quizResults" style="display: none;">
                             <h3>Hasil Quiz</h3>
                             <p id="scoreText">Skor Anda: <span id="finalScore">0</span>/10</p>
@@ -674,7 +691,7 @@
                                 <p><i class="fas fa-phone"></i> +62 822-7881-8985</p>
                                 <p><i class="fas fa-map-marker-alt"></i> padang, Indonesia</p>
                             </div>
-                            
+
                             <h3>Jam Operasional</h3>
                             <div style="margin: 1rem 0;">
                                 <p>Senin - Jumat: 09:00 - 18:00 WIB</p>
@@ -682,7 +699,7 @@
                                 <p>Minggu: Tutup</p>
                             </div>
                         </div>
-                        
+
                         <div>
                             <h3>Kirim Pesan</h3>
                             <form id="contactForm" onsubmit="submitContact(event)">
@@ -732,7 +749,7 @@
         let score = 0;
 
         // Initialize the application
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             initializeApp();
         });
 
@@ -747,7 +764,7 @@
         function setupEventListeners() {
             // Navigation event listeners
             document.querySelectorAll('.nav-link').forEach(link => {
-                link.addEventListener('click', function(e) {
+                link.addEventListener('click', function (e) {
                     e.preventDefault();
                     const page = this.dataset.page;
                     showPage(page);
@@ -761,19 +778,19 @@
             document.querySelectorAll('.page').forEach(page => {
                 page.classList.remove('active');
             });
-            
+
             // Show selected page
             document.getElementById(pageId).classList.add('active');
-            
+
             // Update navigation active state
             document.querySelectorAll('.nav-link').forEach(link => {
                 link.classList.remove('active');
             });
-            
+
             document.querySelector(`[data-page="${pageId}"]`).classList.add('active');
-            
+
             // Load page-specific data
-            switch(pageId) {
+            switch (pageId) {
                 case 'courses':
                     displayCourses();
                     break;
@@ -870,12 +887,12 @@
         function displayCourses() {
             const courseGrid = document.getElementById('courseGrid');
             const filter = document.getElementById('courseFilter').value;
-            
+
             let filteredCourses = courses;
             if (filter) {
                 filteredCourses = courses.filter(course => course.category === filter);
             }
-            
+
             courseGrid.innerHTML = filteredCourses.map(course => `
                 <div class="course-card">
                     <div class="course-image">
@@ -915,6 +932,7 @@
         }
 
         // API Integration - Functionality 2: Quiz System
+        // API Integration - Functionality 2: Quiz System (Updated with 10 questions per category)
         function initializeQuizData() {
             quizData = {
                 programming: [
@@ -942,6 +960,61 @@
                             "Mengubah style element"
                         ],
                         correct: 2
+                    },
+                    {
+                        question: "Bagaimana cara mendeklarasikan variabel di JavaScript?",
+                        options: ["var, let, const", "int, float, string", "public, private", "static, dynamic"],
+                        correct: 0
+                    },
+                    {
+                        question: "Apa output dari console.log(typeof null)?",
+                        options: ["null", "undefined", "object", "string"],
+                        correct: 2
+                    },
+                    {
+                        question: "Manakah cara yang benar untuk membuat array di JavaScript?",
+                        options: ["var arr = []", "var arr = {}", "var arr = ()", "var arr = <>"],
+                        correct: 0
+                    },
+                    {
+                        question: "Apa itu DOM dalam JavaScript?",
+                        options: [
+                            "Data Object Model",
+                            "Document Object Model",
+                            "Dynamic Object Model",
+                            "Database Object Model"
+                        ],
+                        correct: 1
+                    },
+                    {
+                        question: "Bagaimana cara menambahkan event listener di JavaScript?",
+                        options: [
+                            "element.addEventListener()",
+                            "element.addEvent()",
+                            "element.on()",
+                            "element.listen()"
+                        ],
+                        correct: 0
+                    },
+                    {
+                        question: "Apa perbedaan antara '==' dan '===' di JavaScript?",
+                        options: [
+                            "Tidak ada perbedaan",
+                            "== membandingkan nilai, === membandingkan nilai dan tipe",
+                            "=== membandingkan nilai, == membandingkan tipe",
+                            "Keduanya sama-sama membandingkan tipe"
+                        ],
+                        correct: 1
+                    },
+                    {
+                        question: "Apa itu closure dalam JavaScript?",
+                        options: [
+                            "Fungsi yang dapat mengakses variabel dari scope luar",
+                            "Cara menutup aplikasi",
+                            "Method untuk menghapus variabel",
+                            "Syntax untuk mengakhiri kode"
+                        ],
+                        correct: 0
                     }
                 ],
                 design: [
@@ -959,6 +1032,76 @@
                         question: "Prinsip mana yang paling penting dalam desain UI?",
                         options: ["Warna", "Typography", "Usability", "Animasi"],
                         correct: 2
+                    },
+                    {
+                        question: "Apa itu wireframe dalam desain?",
+                        options: [
+                            "Sketsa kasar layout dan struktur",
+                            "Gambar berkualitas tinggi",
+                            "Kode HTML",
+                            "Database design"
+                        ],
+                        correct: 0
+                    },
+                    {
+                        question: "Manakah yang termasuk prinsip desain Gestalt?",
+                        options: ["Proximity", "Color Theory", "Typography", "Animation"],
+                        correct: 0
+                    },
+                    {
+                        question: "Apa itu responsive design?",
+                        options: [
+                            "Desain yang cepat loading",
+                            "Desain yang menyesuaikan berbagai ukuran layar",
+                            "Desain dengan animasi",
+                            "Desain dengan warna cerah"
+                        ],
+                        correct: 1
+                    },
+                    {
+                        question: "Apa kepanjangan dari CMYK?",
+                        options: [
+                            "Cyan, Magenta, Yellow, Key",
+                            "Color, Mix, Yellow, Key",
+                            "Cyan, Mix, Yellow, Black",
+                            "Color, Magenta, Yellow, Black"
+                        ],
+                        correct: 0
+                    },
+                    {
+                        question: "Apa itu typography hierarchy?",
+                        options: [
+                            "Urutan penggunaan font",
+                            "Sistem pengorganisasian teks berdasarkan prioritas",
+                            "Daftar font yang tersedia",
+                            "Ukuran font yang berbeda"
+                        ],
+                        correct: 1
+                    },
+                    {
+                        question: "Manakah yang bukan termasuk golden ratio?",
+                        options: ["1:1.618", "16:9", "3:2", "4:3"],
+                        correct: 1
+                    },
+                    {
+                        question: "Apa itu design thinking?",
+                        options: [
+                            "Cara berpikir tentang warna",
+                            "Metodologi untuk memecahkan masalah secara kreatif",
+                            "Software untuk desain",
+                            "Teknik menggambar"
+                        ],
+                        correct: 1
+                    },
+                    {
+                        question: "Apa fungsi dari mood board dalam desain?",
+                        options: [
+                            "Menentukan harga project",
+                            "Mengumpulkan inspirasi visual dan konsep",
+                            "Membuat schedule kerja",
+                            "Menulis laporan"
+                        ],
+                        correct: 1
                     }
                 ],
                 general: [
@@ -976,6 +1119,71 @@
                         question: "Siapa pendiri Microsoft?",
                         options: ["Steve Jobs", "Bill Gates", "Mark Zuckerberg", "Larry Page"],
                         correct: 1
+                    },
+                    {
+                        question: "Apa kepanjangan dari CSS?",
+                        options: [
+                            "Computer Style Sheets",
+                            "Creative Style Sheets",
+                            "Cascading Style Sheets",
+                            "Colorful Style Sheets"
+                        ],
+                        correct: 2
+                    },
+                    {
+                        question: "Protokol apa yang digunakan untuk mengakses website?",
+                        options: ["FTP", "SMTP", "HTTP/HTTPS", "POP3"],
+                        correct: 2
+                    },
+                    {
+                        question: "Apa itu cloud computing?",
+                        options: [
+                            "Komputer yang berada di awan",
+                            "Layanan komputasi melalui internet",
+                            "Software untuk edit foto",
+                            "Sistem operasi baru"
+                        ],
+                        correct: 1
+                    },
+                    {
+                        question: "Siapa yang menciptakan World Wide Web?",
+                        options: ["Steve Jobs", "Bill Gates", "Tim Berners-Lee", "Mark Zuckerberg"],
+                        correct: 2
+                    },
+                    {
+                        question: "Apa itu artificial intelligence?",
+                        options: [
+                            "Robot fisik",
+                            "Kecerdasan buatan yang dapat meniru kemampuan manusia",
+                            "Software antivirus",
+                            "Bahasa pemrograman baru"
+                        ],
+                        correct: 1
+                    },
+                    {
+                        question: "Manakah yang termasuk search engine?",
+                        options: ["Facebook", "Instagram", "Google", "WhatsApp"],
+                        correct: 2
+                    },
+                    {
+                        question: "Apa itu big data?",
+                        options: [
+                            "Data berukuran besar dalam volume, velocity, dan variety",
+                            "Database yang mahal",
+                            "Software untuk analisis",
+                            "Komputer dengan storage besar"
+                        ],
+                        correct: 0
+                    },
+                    {
+                        question: "Apa kepanjangan dari URL?",
+                        options: [
+                            "Universal Resource Locator",
+                            "Uniform Resource Locator",
+                            "United Resource Locator",
+                            "Unique Resource Locator"
+                        ],
+                        correct: 1
                     }
                 ]
             };
@@ -984,15 +1192,15 @@
         function loadQuiz() {
             const category = document.getElementById('quizCategory').value;
             if (!category) return;
-            
+
             currentQuiz = quizData[category];
             currentQuestionIndex = 0;
             userAnswers = [];
             score = 0;
-            
+
             document.getElementById('quizQuestions').style.display = 'block';
             document.getElementById('quizResults').style.display = 'none';
-            
+
             showQuestion();
         }
 
@@ -1001,18 +1209,21 @@
                 showResults();
                 return;
             }
-            
+
             const question = currentQuiz[currentQuestionIndex];
             document.getElementById('questionText').textContent = `${currentQuestionIndex + 1}. ${question.question}`;
-            
+
             const optionsContainer = document.getElementById('quizOptions');
             optionsContainer.innerHTML = question.options.map((option, index) => `
-                <div class="quiz-option" onclick="selectOption(${index})">
-                    ${option}
-                </div>
-            `).join('');
-            
+        <div class="quiz-option" onclick="selectOption(${index})">
+            ${option}
+        </div>
+    `).join('');
+
             document.getElementById('nextBtn').style.display = 'none';
+
+            // Update progress indicator
+            updateQuizProgress();
         }
 
         function selectOption(optionIndex) {
@@ -1020,10 +1231,10 @@
             document.querySelectorAll('.quiz-option').forEach(option => {
                 option.classList.remove('selected');
             });
-            
+
             // Add selection to clicked option
             document.querySelectorAll('.quiz-option')[optionIndex].classList.add('selected');
-            
+
             // Store answer
             userAnswers[currentQuestionIndex] = optionIndex;
         }
@@ -1033,7 +1244,7 @@
                 showNotification('Pilih jawaban terlebih dahulu!', 'error');
                 return;
             }
-            
+
             const correct = currentQuiz[currentQuestionIndex].correct;
             if (userAnswers[currentQuestionIndex] === correct) {
                 score++;
@@ -1041,7 +1252,7 @@
             } else {
                 showNotification('Jawaban salah. Coba lagi! 🤔', 'error');
             }
-            
+
             document.getElementById('nextBtn').style.display = 'inline-block';
         }
 
@@ -1054,7 +1265,18 @@
             document.getElementById('quizQuestions').style.display = 'none';
             document.getElementById('quizResults').style.display = 'block';
             document.getElementById('finalScore').textContent = score;
-            
+
+            // Calculate percentage
+            const percentage = Math.round((score / currentQuiz.length) * 100);
+            document.getElementById('scoreText').innerHTML = `
+        Skor Anda: <span id="finalScore">${score}</span>/${currentQuiz.length} (${percentage}%)
+        <br><small style="color: #666;">
+            ${percentage >= 80 ? '🎉 Excellent! Kerja bagus!' :
+                    percentage >= 60 ? '👍 Good! Terus belajar!' :
+                        '💪 Keep trying! Jangan menyerah!'}
+        </small>
+    `;
+
             // Update user progress
             updateQuizProgress();
         }
@@ -1067,6 +1289,35 @@
 
         function resetQuiz() {
             restartQuiz();
+        }
+
+        // Update quiz progress indicator
+        function updateQuizProgress() {
+            if (currentQuiz && currentQuestionIndex < currentQuiz.length) {
+                const progressPercentage = (currentQuestionIndex / currentQuiz.length) * 100;
+
+                // Add progress bar if it doesn't exist
+                let progressBar = document.querySelector('.quiz-progress');
+                if (!progressBar) {
+                    progressBar = document.createElement('div');
+                    progressBar.className = 'quiz-progress';
+                    progressBar.innerHTML = `
+                <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
+                    <span>Progress: <span id="questionProgress">${currentQuestionIndex}</span>/${currentQuiz.length}</span>
+                    <span>Skor: <span id="currentScore">${score}</span></span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="quizProgressFill" style="width: ${progressPercentage}%"></div>
+                </div>
+            `;
+                    document.getElementById('quizQuestions').insertBefore(progressBar, document.querySelector('.quiz-question'));
+                }
+
+                // Update progress
+                document.getElementById('questionProgress').textContent = currentQuestionIndex + 1;
+                document.getElementById('currentScore').textContent = score;
+                document.getElementById('quizProgressFill').style.width = progressPercentage + '%';
+            }
         }
 
         // API Integration - Functionality 3: Progress Tracking
@@ -1088,7 +1339,7 @@
 
         function displayProgress() {
             const progressList = document.getElementById('progressList');
-            
+
             progressList.innerHTML = courses.map(course => `
                 <div class="progress-item">
                     <div>
@@ -1101,7 +1352,7 @@
                     <div style="color: #667eea; font-weight: bold;">${course.progress}%</div>
                 </div>
             `).join('');
-            
+
             // Update progress statistics
             document.getElementById('completedCourses').textContent = userProgress.completedCourses;
             document.getElementById('hoursLearned').textContent = userProgress.hoursLearned;
@@ -1112,7 +1363,7 @@
         function updateQuizProgress() {
             userProgress.quizzesCompleted++;
             userProgress.hoursLearned += 0.5;
-            
+
             // Simulate API call to update progress
             setTimeout(() => {
                 showNotification('Progress berhasil diperbarui!');
@@ -1126,7 +1377,7 @@
             animateCounter('totalStudents', 1250);
             animateCounter('totalCourses', 6);
             animateCounter('totalQuizzes', userProgress.quizzesCompleted || 15);
-            
+
             // Update success rate
             const successRate = userProgress.averageScore || 85;
             document.getElementById('successRate').textContent = successRate + '%';
@@ -1137,26 +1388,26 @@
             const startValue = 0;
             const duration = 2000;
             const startTime = performance.now();
-            
+
             function updateCounter(currentTime) {
                 const elapsed = currentTime - startTime;
                 const progress = Math.min(elapsed / duration, 1);
                 const currentValue = Math.floor(startValue + (targetValue - startValue) * progress);
-                
+
                 element.textContent = currentValue;
-                
+
                 if (progress < 1) {
                     requestAnimationFrame(updateCounter);
                 }
             }
-            
+
             requestAnimationFrame(updateCounter);
         }
 
         // API Integration - Functionality 5: Contact Form
         function submitContact(event) {
             event.preventDefault();
-            
+
             const formData = new FormData(event.target);
             const contactData = {
                 name: formData.get('name'),
@@ -1165,25 +1416,25 @@
                 message: formData.get('message'),
                 timestamp: new Date().toISOString()
             };
-            
+
             // Show loading state
             const submitBtn = event.target.querySelector('button[type="submit"]');
             const originalText = submitBtn.textContent;
             submitBtn.innerHTML = '<span class="loading"></span> Mengirim...';
             submitBtn.disabled = true;
-            
+
             // Simulate API call
             setTimeout(() => {
                 // Reset form
                 event.target.reset();
-                
+
                 // Reset button
                 submitBtn.textContent = originalText;
                 submitBtn.disabled = false;
-                
+
                 // Show success notification
                 showNotification('Pesan berhasil dikirim! Kami akan segera menghubungi Anda.');
-                
+
                 // In real application, you would send this data to your backend
                 console.log('Contact form submitted:', contactData);
             }, 2000);
@@ -1193,16 +1444,16 @@
         function enrollCourse(courseId) {
             const course = courses.find(c => c.id === courseId);
             if (!course) return;
-            
+
             // Simulate enrollment process
             showNotification(`Berhasil mendaftar kursus: ${course.title}!`);
-            
+
             // Update course progress if it's a new enrollment
             if (course.progress === 0) {
                 course.progress = 5; // Start with 5% progress
                 displayCourses();
             }
-            
+
             // Switch to progress page
             setTimeout(() => {
                 showPage('progress');
@@ -1213,18 +1464,18 @@
         function showNotification(message, type = 'success') {
             const notification = document.getElementById('notification');
             const notificationText = document.getElementById('notificationText');
-            
+
             notificationText.textContent = message;
             notification.className = `notification ${type}`;
             notification.classList.add('show');
-            
+
             setTimeout(() => {
                 notification.classList.remove('show');
             }, 3000);
         }
 
         // Responsive design enhancements
-        window.addEventListener('resize', function() {
+        window.addEventListener('resize', function () {
             if (window.innerWidth > 768) {
                 document.querySelector('.nav-links').classList.remove('active');
             }
@@ -1245,14 +1496,14 @@
         });
 
         // Keyboard navigation support
-        document.addEventListener('keydown', function(e) {
+        document.addEventListener('keydown', function (e) {
             if (e.key === 'Escape') {
                 document.querySelector('.nav-links').classList.remove('active');
             }
         });
 
         // Auto-save progress (simulated)
-        setInterval(function() {
+        setInterval(function () {
             // Simulate auto-save progress
             if (Math.random() > 0.95) { // 5% chance every interval
                 courses.forEach(course => {
@@ -1267,11 +1518,11 @@
         function initializeInteractiveElements() {
             // Add hover effects to cards
             document.querySelectorAll('.course-card, .feature-card, .stat-card').forEach(card => {
-                card.addEventListener('mouseenter', function() {
+                card.addEventListener('mouseenter', function () {
                     this.style.transform = 'translateY(-5px)';
                 });
-                
-                card.addEventListener('mouseleave', function() {
+
+                card.addEventListener('mouseleave', function () {
                     this.style.transform = 'translateY(0)';
                 });
             });
@@ -1282,24 +1533,25 @@
 
         // Service Worker registration for PWA capabilities (optional)
         if ('serviceWorker' in navigator) {
-            window.addEventListener('load', function() {
+            window.addEventListener('load', function () {
                 navigator.serviceWorker.register('/sw.js')
-                    .then(function(registration) {
+                    .then(function (registration) {
                         console.log('ServiceWorker registration successful');
                     })
-                    .catch(function(err) {
+                    .catch(function (err) {
                         console.log('ServiceWorker registration failed');
                     });
             });
         }
 
         // Performance monitoring
-        window.addEventListener('load', function() {
-            setTimeout(function() {
+        window.addEventListener('load', function () {
+            setTimeout(function () {
                 const loadTime = performance.timing.loadEventEnd - performance.timing.navigationStart;
                 console.log('Page load time:', loadTime + 'ms');
             }, 0);
         });
     </script>
 </body>
+
 </html>
